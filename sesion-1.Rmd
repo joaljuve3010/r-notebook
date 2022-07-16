@@ -1,0 +1,158 @@
+
+Arithmetic with R
+
+```{r}
+
+5+5-3 
+10-2 
+3*5 
+(5+5)/2 
+28%%6
+```
+Variables assignment
+```{r}
+x <- 10
+x
+y = 9
+x+y
+result <- x-y
+result
+```
+Basic Data types in R
+```{r}
+my_numeric <- 423
+my_character <- "hellow"
+my_logical <- FALSE
+
+# get data type
+class(my_numeric)
+class(my_character)
+class(my_logical)
+
+```
+create a vector
+```{r}
+numeric_vector <- c(1,10,49)
+numeric_vector
+character_vector <- c ("a","b","c")
+boolean_vector <- c (TRUE, FALSE, TRUE)
+
+POCKER_VECTOR <- c(140,-50,-20,-120,240)
+ROULETTE_VECTOR <- c(-24,-50,10,350,10)
+
+POCKER_VECTOR
+
+
+```
+Naming vector
+
+```{r}
+names(POCKER_VECTOR)<- c("monday", "tuesday", "wednesday", "thursdat", "friday")
+days<- c("monday", "tuesday", "wednesday", "thursdat", "friday")
+
+names(POCKER_VECTOR)<- days
+
+POCKER_VECTOR
+```
+
+Selection by comparison
+
+```{r}
+age<- 17
+
+age >= 18
+
+selection_vector <- POCKER_VECTOR > 0 
+# selecion vecto base on other vecto
+pocker_winning_days <- POCKER_VECTOR[selection_vector]
+pocker_winning_days
+#calculating
+x_vector <-c(4,7,9)
+y_vector <-c(12,45,78)
+
+r_vector <- x_vector +y_vector
+r_vector
+```
+
+VECTOR SELECION 
+```{r}
+POCKER_VECTOR
+#index start in 1
+POCKER_VECTOR[3]
+#choose a segment
+POCKER_VECTOR[c(2,3,4)]
+POCKER_VECTOR[c(2,3,4)]
+POCKER_VECTOR[2:5]
+
+```
+Matrices
+```{r}
+matrix((1:9),byrow=TRUE, nrow=3)
+
+```
+Analyze matrices
+```{r}
+new_hope <- c(460.998,314.4)
+empirte_strikes <- c(290.475,247.900)
+return_jedi <- c(309.306,165.8)
+
+box_office <- c(new_hope,empirte_strikes,return_jedi)
+box_office
+
+star_wars_matrix <- matrix(box_office, byrow = TRUE, nrow = 3)
+star_wars_matrix
+colnames(star_wars_matrix) <-c("US","non-US")
+rownames(star_wars_matrix) <-c("new_hope","empirte_strikes","return_jedi")
+star_wars_matrix
+rowSums(star_wars_matrix)
+```
+FACTOR
+```{r}
+#variable categoricas.
+sex_vector <-c("M","F","M","F","M","M")
+factor_sex_vector <-factor(sex_vector)
+factor_sex_vector
+
+```
+FACTOR
+```{r}
+#variable categoricas.
+temperature_vector <-c("Low","High","Low","High","Medium")
+factor_temperature_vector <-factor(temperature_vector, order=TRUE, labels=c("Low","Medium", "High"))
+factor_temperature_vector
+```
+FACTOR LABELS
+```{r}
+#variable categoricas.
+survey <-c("M","F","M","F","M","M")
+factor_survey <-factor(sex_vector)
+factor_survey
+levels(factor_survey)<-c("Female", "Male")
+factor_survey
+```
+Summarizing a factor
+
+```{r}
+#variable categoricas.
+summary(factor_sex_vector)
+summary(factor_survey)
+```
+Ordened Factor
+```{r}
+male<-factor_survey[1]
+female<-factor_survey[2]
+male>female
+
+#order example
+temperature_vector <-c("Low","High","Low","High","Medium")
+factor_temperature_vector <-factor(temperature_vector, order=TRUE, labels=c("Low","Medium", "High"))
+factor_temperature_vector
+low<-factor_temperature_vector[1]
+high<-factor_temperature_vector[2]
+#now is comparable
+low<high
+low>high
+
+```
+
+
