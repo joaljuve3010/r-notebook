@@ -1,0 +1,80 @@
+CONDITIONAL AND CONTROL FLOW.
+EQUIALITY
+```{r}
+"Test" != "test" # case sensitive
+TRUE == FALSE
+-6*15!=17-101
+TRUE == 1
+# GREATER THAN
+-5*5+2>=-10+1
+
+"raining" <= "raining dos"
+
+TRUE < FALSE # 1 < 0
+```
+compare vectors
+```{r}
+linkedin <- c(16,9,13,5,2,17,14)
+facebook <- c(17,9,13,5,2,13,14)
+linkedin > 13
+facebook <= 5
+linkedin > facebook
+
+```
+COMPARE MATRICES
+```{r}
+views <- matrix(c(linkedin, facebook), nrow = 2, byrow = TRUE)
+views
+views==13
+views<=14
+```
+& |
+```{r}
+linkedin
+last <- tail(linkedin,1)
+
+last <5 | last > 10
+last <5 & last > 20
+
+linkedin >10 & facebook < 10 #compare each element
+linkedin >=12 | facebook >= 12
+
+```
+CONDITIONAL STATEMENTS
+```{r}
+MEDIUUM <- "linkedin"
+num_views <- 14
+if (MEDIUUM == "linkedin"){
+  print("shows linkedin info")
+} else if (MEDIUUM == "facebook"){
+  print("shows linkedin info")
+} else {
+  print("unknow")
+}
+if (num_views > 13){
+  print("you are popular")
+  
+
+}
+```
+
+your number of views
+```{r}
+#if anidados
+```
+
+loops
+```{r}
+#  while (condition){exp}
+speed<- 70
+while (speed > 30){
+  print("slow down")
+  speed <- speed -7
+  #you can use conditions
+  #to stop the loop, use break
+  
+}
+```
+
+
+
