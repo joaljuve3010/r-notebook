@@ -18,3 +18,73 @@ planes_ddf <-data.frame(name, type,diameter, rotation, rings)
 planes_ddf
 str(planes_ddf)
 ```
+selection of data fram elements
+```{r}
+planes_ddf[1,3] #specific value
+planes_ddf[4,]#specific row
+planes_ddf[1:5,"diameter"]#slizing
+
+ring_vector <-planes_ddf$rings # selecting a single column 
+
+planes_ddf[ring_vector,]# all rows that are true
+planes_ddf[!ring_vector,]# all rows that are false
+#SUBSET FUNCTION, FILTER 
+subset(planes_ddf, subset =diameter<1)
+subset(planes_ddf, subset =rings == TRUE)
+
+```
+SORTING- ORDER
+```{r}
+# return index of the element
+
+a <- c(100,10,1000)
+order (a)
+a[order(a)]
+
+position <- order(planes_ddf$diameter)
+planes_ddf[position,]
+
+```
+
+lists
+```{r}
+my_vector <- 1:1
+my_matrix <- matrix(1:10, ncol = 3)
+my_df <-  mtcars[1:10,]
+
+
+my_list <- list(my_vector, my_matrix, my_df)
+
+names(my_list)<- c("vec","mat","df")
+
+my_list
+```
+```{r}
+mov <- c("The Shining")
+act <- matrix(c("Jack Nicholson","Shelley Duvall","Danny Lloyd","Scatman Crothers","Barry Nelson"))
+
+scores <- c(4.5,5,4)
+sources <- c("IMDb1","IMDb2","IMDb3")
+comments <- c("Best Horror Film I Have Ever Seen","A truly brilliant and scary film from Stanley Kubrick","A masterpiece of psychological horror")
+rev <- data.frame(scores, sources, comments)
+
+Shining_list <- list(moviename = mov, actor = act, reviews =rev)
+Shining_list
+```
+selecting list
+```{r}
+Shining_list[[2]][1]
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
