@@ -1,0 +1,121 @@
+
+# Tarea #2
+## Funciones en R
+Las funciones en R son son objetos de primer tipo de R, estas son declaradas con la palabra  *function()*. Su principal uso es realizar un conjunto de instrucciones para realizar una tarea específica. 
+
+### Estructura de una función
+La forma para declarar una función, comienza con el nombre de la misma, luego con el uso de la palabra reservada *function*, seguida de parentesis, aca se declaran los argumentos que tendra nuestra funcion. Los argumentos son valores que se utilizan dentro de la funcion. Finalmente, dentro de las llaves se coloca toda la logica que sea necesaria para cumplir nuesto objetivo. Un ejemplo, es la siguiente:
+```{r}
+My_function <- function(arg_1, arg_2) {
+  print( arg_1)
+  print( arg_1)
+  arg_1 + arg_2
+}
+My_function(3,2)
+```
+Finalmente según el tipo de función que creemos, esta puede devolver o no un valor 
+
+Podemos crea funciones que nos diga si un número es par o impar, por ejemplo
+```{r}
+odd_or_even <- function(arg_1) {
+  if (!(arg_1 %% 2)) {
+    cat(arg_1, 'is even\n')
+  }
+  else{
+    cat(arg_1, 'is odd\n')
+  }
+}
+odd_or_even(3)
+
+odd_or_even(300)
+```
+Basados en el mismo ejemplo, podriamos hacer que en lugar de imprimir un mensaje en pantalla, nos retorne **TRUE** si es par
+```{r}
+is_even <- function(arg_1) {
+  if (!(arg_1 %% 2)) {
+    return(TRUE)
+  }
+  else{
+    return(FALSE)
+  }
+}
+is_even(3)
+
+is_even(300)
+```
+
+### Argumentos de una función
+Como se mensionó antes las funciones en R tienen la posibilidad de recibir argumentos, estos pueden tener valores por defecto, así como ser opciocionales, cabe mencionar, que los argumentos pueden o no existir en la definición de la función. 
+```{r}
+# funcion sin argumentos
+say_hi <- function(){
+  print("Hello world!")
+}
+say_hi()
+```
+Es importante mencionar que los argumentos son *Evaludado de forma peresoza* por lo que si un argumento no es utilizado, no será requerido.
+```{r}
+calc <- function(num_1, num_2){
+  num_1 * 5
+}
+calc(5)
+```
+#### Argumentos por valor
+Se pueden asignar valores por defecto para las funciones, de esta forma, no es necesario que se indiquen siempre.
+```{r}
+circle <- function(r=5, calc = c("area", "volumen")) {
+  if(calc == "area") {
+    return(2 * pi * r)
+  } else {
+    return(pi * r^2)
+  }
+}
+# En estos casos r toma el valor por defecto
+circle(calc = "volumen")
+circle(calc = "area")
+#una opcion incorrecta
+circle(calc = "masa")
+# enviando ambos argumentos
+circle(r=10, calc = "area")
+
+
+```
+
+## Familia apply ##
+Este es un conjunto de funciones, que se encuentra incluido en R, su principal ventaja es eliminar la necesidad  utilizar ciclos en el código.
+
+### lapply
+esta función se aplica a una lista, y evalua la función que se le pase sobre cada uno de los elementos. Si se le pasa una lista de tamaño N, devuelve una lista con N resultados
+*lapply(X, FUN,…)*
+```{r}
+# creamos una funcion que calcule el cuadrado de un numero
+myfn <- function (x) x*x
+# creamos nuestra lista
+mylist<-list(A=matrix(1:9,nrow=3),B=5:1,C=c(5,11))
+mylist
+# usamos lapply
+lapply(mylist, myfn)
+```
+
+### vapply
+Es una vesión similar a sapply(que es una versión simplificada de apply) la cual enforza el tipo de dato que se espera como resultado, segun la documentación de r, esto hace que pueda a llegar a ser mas rápido en algunas ocasiones.
+```{r}
+# definimos nuestra lista de datos con diferetes tipos
+mylist<-list(A=matrix(1:9,nrow=3),B=5:1,C=c(5,11), D = c('a','b'))
+# prueba con sapply
+sapply(mylist, min)
+
+# prueba con vapply
+# result <- vapply(mylist, min, numeric(1))
+
+```
+*Error in vapply(mylist, min, numeric(1)) : values must be type 'double',
+ but FUN(X[[4]]) result is type 'character'*
+
+### Refeencias
+* apply family in r apply(), lapply(), sapply(), mapply() and tapply() » finnstats. (2021, May 20). finnstats ». Retrieved July 29, 2022, from https://finnstats.com/index.php/2021/05/20/apply-family-in-r-lapply-sapply-mapply-tapply/
+* Especificar los posibles valores de un argumento en una función de R. (n.d.). Viva el Software Libre. Retrieved July 29, 2022, from https://vivaelsoftwarelibre.com/especificar-los-posibles-valores-de-un-argumento-en-una-funcion-de-r/
+* Introduction to the R Language - Functions. (n.d.). UC Berkeley Statistics. Retrieved July 29, 2022, from https://www.stat.berkeley.edu/~statcur/Workshop2/Presentations/functions.pdf
+* Treadway, A. (2020, October 20). Why you should use vapply in R - Open Source Automation. TheAutomatic.net. Retrieved July 29, 2022, from http://theautomatic.net/2020/10/20/why-you-should-use-vapply-in-r/?utm_source=rss&utm_medium=rss&utm_campaign=why-you-should-use-vapply-in-r
+
+
