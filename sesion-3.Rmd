@@ -75,6 +75,63 @@ while (speed > 30){
   
 }
 ```
+Loop over a vector
+```{r}
+linkedin <- c(86,9,13,5,2,17,14)
+for (l in linkedin){
+  
+  print(l)
+}
+
+for (i in 1:length(linkedin)){
+  print(linkedin[i])
+}
+```
+loop over a list
+
+```{r}
+# nyc<- lisst (pop =8405837, barauhg=c('city1', 'city','city3) )
+```
+
+loop over a matrix
+```{r}
+new_hope <- c(460.998,314.4)
+empirte_strikes <- c(290.475,247.900)
+return_jedi <- c(309.306,165.8)
+
+box_office <- c(new_hope,empirte_strikes,return_jedi)
+box_office
+
+star_wars_matrix <- matrix(box_office, byrow = TRUE, nrow = 3)
+star_wars_matrix
+colnames(star_wars_matrix) <-c("US","non-US")
+rownames(star_wars_matrix) <-c("new_hope","empirte_strikes","return_jedi")
+star_wars_matrix
+rowSums(star_wars_matrix)
+
+for (i in 1:nrow(star_wars_matrix)){
+  for (j in 1:ncol(star_wars_matrix)){
+  print(star_wars_matrix[i][j])
+}
+}
+```
+
+
+```{r}
+# you cna add condition inside loops
+linkedin <- c(86,9,13,5,2,17,14)
+for (l in linkedin){
+  
+  if(l >10){
+    print("you are popular")
+  }
+  else{
+    break
+  }
+}
+```
+
+
 
 
 

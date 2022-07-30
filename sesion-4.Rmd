@@ -1,0 +1,127 @@
+function
+```{r}
+linkedin <- c(86,9,13,5,2,17,14)
+length (linkedin)
+head(linkedin,2)
+?length
+help("length")
+```
+
+use a function
+```{r}
+avg_li <- mean (linkedin)
+avg_li
+sum(linkedin)
+abs(linkedin)
+```
+write yoor own function
+```{r}
+ppow_two <- function( arg1){
+  return(arg1**2)
+}
+ppow_two(2)
+sumb_abs <- function( arg1,arg2){
+  return(abs(arg1)+abs(arg2))
+}
+sumb_abs(2,-5)
+
+ppow_two <- function( arg1, val1){
+  if(val1){
+    print(paste(arg1,"wow"))
+  }
+}
+ppow_two(2,TRUE)
+
+interpreter <- function(arg1){
+  if(arg1 >4){
+    print ("wow, you are doing grea!")
+  }else{
+  print("you can improve")
+}
+  }
+interpreter(linkedin[3])
+# YPU CAN USE MULTIPLE FUNCTION AND SET ARGS BY DEFAULS
+interpreter_two <- function(arg1,return_sum =TRUE){
+  COUNT <- 0
+  for(v in arg1){
+  if(v  >4){
+    print ("wow, you are doing grea!")
+  }else{
+  print("you can improve")
+}
+  }
+}
+interpreter_two(linkedin)
+
+```
+
+LOAD AN  R PACKAGE
+```{r}
+library("ggplot2")
+mtcars
+qplot(mtcars$wt, mtcars$hp)
+```
+
+```{r}
+pioneers <-c ("GAUSS:1977", "BAYES:1702", "PASCA:1623","PEARSON:1857")
+
+spli_pionert <- strsplit(pioneers, split = ":")
+spli_low <- lapply(spli_pionert, tolower)
+spli_low
+
+select_first <-function(mylist){
+  mylist[1]
+}
+
+lapply(spli_low, select_first)
+```
+
+lappy for anonymous functions
+
+```{r}
+spli_low
+names <- lapply(spli_low, function(x){x[1]})
+names
+```
+use lapplu with more arguments
+```{r}
+select_el <-function(mylist,x){
+  mylist[x]
+}
+
+years <- lapply(spli_low, select_el,2)
+years
+```
+SAPPLY
+```{r}
+NAMES <- sapply(spli_low, select_el,1)
+
+extrem_avg<- function(x){
+  (min(x)+max(x))/2
+}
+
+vec1<- c(3,8,7,6)
+vec2<- c(8,8,7,2)
+vec3<- c(10,1,11,6)
+
+temp<-list(vec1,vec2,vec3)
+
+sapply(temp, extrem_avg)
+lapply(temp, extrem_avg)
+
+```
+
+```{r}
+basics <- function(x){
+  c(min= min(x),mean1 = mean(x),max1 = max(x) )
+}
+
+temp
+vapply (temp, basics, numeric(3))
+```
+mathematical utilities
+x <- c(5,4,1,8,3,1,0,1,8)
+
+
+
+
