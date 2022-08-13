@@ -78,7 +78,7 @@ by_continent <- gapminder %>%
   group_by(continent) %>%
   sumarize (mediangdpPercap =median(gdpPercap))
 by_continent
-ggplot(by_year_continent, aes (x=country, y =mediangdppercar,color, continent )) +geom_col()
+ggplot(by_continent, aes (x=country, y =gdpPercap,color, continent )) +geom_col()
 
 
 ```
