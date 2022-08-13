@@ -1,0 +1,64 @@
+Combine, filter and arrange
+```{r}
+gapminder %>%
+  filter(year = 2007)%>%
+  mutate (LifeExpMonths = 12*LifeExp)%>%
+  order(desc(LifeExpMonths))
+  
+```
+GGPLOT2
+```{r}
+library(ggplot2)
+gapminder1952 <- gapminder %>%
+  filter(year = 1952)
+ggplot(gapminder1952, aes(x = pop, y = gdppercap))
+ggplot(gapminder1952, aes(x = pop, y = lifExp)) + geom_point()
+
+ggplot(gapminder1952, aes(x = pop, y = lifExp)) + geom_point()
+
+
+```
+potting x in log
+```{r}
+ggplot(gapminder1952, aes(x = pop, y = lifExp)) + 
+  geom_point() +
+  scale_x_log10()
+```
+potting y  and x in log
+```{r}
+ggplot(gapminder1952, aes(x = pop, y = lifExp)) + 
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10()
+
+```
+Adding colo to a scatter plot
+```{r}
+ggplot(gapminder1952, aes(x = pop, y = lifExp, color=contienen)) + 
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10()
+```
+Adding size and color to a scatter plot
+
+```{r}
+ggplot(gapminder1952, aes(x = pop, y = lifExp, color=contienen,,size=gpnPerCap)) + 
+  geom_point() +
+  scale_x_log10() +
+  scale_y_log10()
+```
+
+faceting per year
+
+```{r}
+ggplot(gapminder1952, aes(x = pop, y = lifExp, color=contienen,,size=gpnPerCap, size=pop)) + 
+  geom_point() +
+  scale_x_log10() +
+  facet_wrap(~year)
+```
+
+
+
+
+
+
