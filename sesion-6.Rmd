@@ -1,0 +1,91 @@
+grouping and sumarizning
+sumarzing the median lif xpentancu
+
+```{r}
+gapminder %>%
+  sumarize (medianLifeExp =median(lifeExp))
+# filter for 1957 tje nm simarize the median life expectanvy 
+gapminder %>%
+  filter (year == 1957)%>%
+  sumarize (medianLifeExp =median(lifeExp))
+
+gapminder %>%
+  filter (year == 1957)%>%
+  sumarize (medianLifeExp =median(lifeExp), maxFdpPercap = max (gdpPercap ))
+```
+
+Sumarazing per year
+```{r}
+gapminder %>%
+  group_by(year) %>%
+  filter (year == 1957)%>%
+  sumarize (medianLifeExp =median(lifeExp), maxFdpPercap = max (gdpPercap ))
+```
+
+Sumarazing per continent
+```{r}
+gapminder %>%
+  filter (year == 1957)%>%
+  group_by(continent) %>%
+  sumarize (medianLifeExp =median(lifeExp), maxFdpPercap = max (gdpPercap ))
+```
+
+Sumarazing per continent
+```{r}
+gapminder %>%
+  filter (year == 1957)%>%
+  group_by(continent, year) %>%
+  sumarize (medianLifeExp =median(lifeExp), maxFdpPercap = max (gdpPercap ))
+```
+
+typer of visualization
+visualizen meina life expectnaci over time
+
+```{r}
+by_year <- grapminder %>%
+gropu_by (year)%>%
+  sumarize (medianLifeExp =median(lifeExp), maxFdpPercap = max (gdpPercap ))
+by_year
+
+ggplot(bye_year, aes (x=year, y =mediangdppercar )) +geom_line()
+```
+
+
+```{r}
+by_year_continent <- gapminder %>%
+  group_by(continent, year) %>%
+  sumarize (medianLifeExp =median(gdpPercap))
+
+by_year_continent
+ggplot(by_year_continent, aes (x=year, y =mediangdppercar,color, continent )) +geom_line()
+
+```
+bar plots
+visualizing gdpper continent
+```{r}
+by_continent <- gapminder %>%
+  filter(year = 1952) %>%
+  group_by(continent) %>%
+  sumarize (mediangdpPercap =median(gdpPercap))
+by_continent
+ggplot(by_year_continent, aes (x=year, y =mediangdppercar,color, continent )) +geom_col()
+
+```
+
+```{r}
+by_continent <- gapminder %>%
+  filter(year = 1952, continent=oceani) %>%
+  group_by(continent) %>%
+  sumarize (mediangdpPercap =median(gdpPercap))
+by_continent
+ggplot(by_year_continent, aes (x=country, y =mediangdppercar,color, continent )) +geom_col()
+
+
+```
+
+
+
+
+
+
+
