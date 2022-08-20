@@ -83,6 +83,178 @@ ggplot(by_continent, aes (x=country, y =gdpPercap,color, continent )) +geom_col(
 
 ```
 
+HISTOGRTAM
+VISUALIZING POPULATION 
+```{r}
+library(gapminder)
+library(ggplot2)
+library(dplyr)
+
+gapminder1952<- gapminder%>%
+  filter (year==1952)%>%
+  mutate (pop_by_mil = pop/100000)
+
+ggplot(gapminder1952, aes (x=pop_by_mil)) + geom_histogram(beams = 50)
+
+```
+
+VISUALIZING WITH X-AXIS ON A LOG SCCALE
+
+```{r}
+gapminder1952<- gapminder%>%
+  filter (year==1952)
+
+ggplot(gapminder1952, aes(x=pop))+geom_histogram(bins = 50)+scale_x_log10()
+          
+```
+
+Boxplots
+Comparin GPD per capita across continents
+```{r}
+gapminder1952<- gapminder%>%
+  filter (year==1952)
+
+gapminder1952%>%
+  filter (continent=='Americas')
+
+ggplot(gapminder1952, aes(x=continent, y=gdpPercap))+
+  geom_boxplot()+
+  scale_y_log10()
+```
+Adding a title to you graph
+```{r}
+gapminder1952<- gapminder%>%
+  filter (year==1952)
+
+ggplot(gapminder1952, aes(x=pop))+geom_histogram(bins = 50)+scale_x_log10()+
+  ggtitle("Comparin GPD per capita across continents
+")
+          
+```
+
+DATA MANIPULATION WITH DPLYR
+
+```{r}
+setwd("~/MASTER/funadmetos de progrmacion/r-notebook")
+library(tidyverse)
+counties <- read.csv('counties.csv')
+glimpse(counties)
+```
+selecting colums
+```{r}
+counties%>%
+  select(state, county,population, men,women)
+counties_selected <-counties%>%
+  select(state, county,population, private_work,public_work, self_employed)%>%
+  arrange()
+
+counties_selected %>%
+    arrange(private_work)
+
+counties_selected <-counties%>%
+  select(state, county,population)%>%
+  filter(population> 1000000)
+
+
+counties_selected <-counties%>%
+  filter(state=="Texas",population>100000)%>%
+  arrange(private_work)
+ 
+counties_selected
+```
+select, mutate, filter and arrange
+```{r}
+counties_selected <-counties%>%
+  select(state, county,population, men,women)%>%
+  mutate(propotio_men = men/population)%>%
+  filter(population>1000000)%>%
+  arrange(desc(propotio_men))
+counties_selected
+```
+
+Count
+```{r}
+counties_selected <- counties%>%
+  select(county,region, state, population, citizens)
+counties_selected
+counties_selected  %>%
+  count (region, sort = TRUE )
+```
+
+counting citizen by state
+```{r}
+counties_selected  %>%
+  count (state, wt=citizens)  %>%
+  arrange(desc(n))
+```
+MUTATING AND COUNTING
+```{r}
+counties_selected <- counties%>%
+  select(county,region, state, population, walk)
+counties_selected  %>%
+  mutate (population_walk = population*walk/100)%>%
+  count(population_walk)
+```
+sumarizing
+```{r}
+counties_selected <- counties%>%
+  select(county,region, state,population,income, unemployment)
+counties_selected  %>%
+  summarise(min_pulation=min(population))
+```
+
+sumarizing by states
+```{r}
+counties_selected <- counties%>%
+  select(county,region, state,population,income, unemployment, land_area)
+counties_selected  %>%
+  group_by(state)  %>%
+  summarise(min_pulation=min(population)) 
+  
+```
+```{r}
+counties_selected <- counties%>%
+  select(county,region, state,population,income, unemployment, land_area)
+counties_selected  %>%
+  group_by(state)  %>%
+  summarise(min_pulation=min(population)) 
+#mutate
+#arrange
+```
+
+
+TOP_N VERB
+```{r}
+counties_selected <- counties%>%
+  select(county,region, state, population,metro, walk)
+counties_selected  %>%
+  group_by(region)  %>%
+  top_n(1, walk)
+
+#group by
+#sumarize
+#top n
+```
+
+Ungroup
+```{r}
+counties_selected <- counties%>%
+  select(state, metro, population)
+counties_selected  %>%
+  group_by(state, metro)  %>%
+  summarise(total_pop = sum(population))  %>%
+  top_n(1, total_pop)  %>%
+  ungroup()%>%
+  count(metro)
+
+
+```
+en el select usar : para estableces un rando
+
+#ends_with .starts_with, contains
+
+
+
 
 
 
