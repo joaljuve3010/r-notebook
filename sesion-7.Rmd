@@ -1,0 +1,80 @@
+```{r}
+setwd("~/MASTER/funadmetos de progrmacion/r-notebook")
+library(dplyr)
+sets <- read_csv('sets.csv')
+themes <- read_csv('themes.csv')
+parts <- read_csv('parts.csv')
+part_categories <- read_csv('part_categories.csv')
+inventory_parts <- read_csv('inventory_parts.csv')
+invetories <- read_csv('inventories.csv')
+colors <- read_csv('colors.csv')
+
+parts
+part_categories
+```
+
+joining parts an categories
+
+```{r}
+parts %>%
+  inner_join(part_categories, by=c("part_cat_id"="id"))
+```
+
+JOINING  PARTS AND INVENTORIES
+```{r}
+parts
+inventory_parts
+
+parts %>%
+  inner_join(inventory_parts, by="part_num")
+
+inventory_parts %>%
+  inner_join(parts, by="part_num")
+```
+
+Joining 3 tables
+
+```{r}
+sets
+invetories
+
+sets %>%
+  inner_join(invetories, by = "set_num")%>%
+  inner_join(inventory_parts, by= c("id"="inventory_id"))
+
+```
+```{r}
+sets %>%
+  inner_join(invetories, by = "set_num")%>%
+  inner_join(inventory_parts, by= c("id"="inventory_id")) %>%
+  inner_join(colors, by= c("color_id"="id"), suffix=c("_set", "_color"))%>%
+  count(name_color)%>%
+  arrange(desc(n))
+
+
+```
+
+LEFT AND RIGHYT JOINS
+
+```{r}
+inventory_parts_joined <- sets %>%
+  inner_join(invetories, by = "set_num")%>%
+  inner_join(inventory_parts, by= c("id"="inventory_id")) %>%
+  inner_join(colors, by= c("color_id"="id"), suffix=c("_set", "_color"))%>%
+  select(set_num,part_num ,color_id, quantity)
+
+inventory_parts_joined
+
+milenium_falcon <- inventory_parts_joined %>%
+  filter(set_num= "7965-1")
+
+star_destroyer <- inventory_parts_joined %>%
+  filter(set_num= "75190-1")
+
+
+  
+```
+
+
+
+

@@ -86,7 +86,7 @@ ggplot(by_continent, aes (x=country, y =gdpPercap,color, continent )) +geom_col(
 HISTOGRTAM
 VISUALIZING POPULATION 
 ```{r}
-library(gapminder)
+                                                                                                                                                                                                                                                                                                                                                                                                                                                            library(gapminder)
 library(ggplot2)
 library(dplyr)
 
@@ -249,9 +249,50 @@ counties_selected  %>%
 
 
 ```
-en el select usar : para estableces un rando
+en el select usar : para establecer otros filtros..
 
 #ends_with .starts_with, contains
+
+27/08/2022
+
+RENAME FUNCTION
+Reanimng column after count
+```{r}
+counties %>%
+  count(state)%>%
+  rename(num_counties = n)
+
+counties %>%
+  select(state, county, poberty_rate = poverty)
+```
+
+using transmute
+```{r}
+counties %>%
+  transmute(state,county, population, density=populatio/land_area) %>%
+  filter (population >=1000000 %>%
+          arrange (desc(demsotu)))
+```
+
+choosing among the four verbes
+```{r}
+counties %>%
+  rename(unemployment_rate=unemployment)
+
+
+counties %>%
+  select (state,county, population, contains("poverty"))
+
+counties %>%
+  mutate (fraction_women = women/population)
+
+counties %>%
+  transmute (state,county, employment_rate = employed/population)
+
+```
+
+
+
 
 
 
